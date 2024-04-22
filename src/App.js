@@ -4,7 +4,11 @@ import { animated, useTransition } from 'react-spring';
 import Dashboard from './Components/Dashboard/Dashboard';
 import Counter from './Components/Counter';
 import Header from './Components/Header';
-import { GoogleLogin } from '@react-oauth/google';
+import SignIn from './Components/GoogleLogin';
+import Form from './Components/Form';
+import RichTextEditor from './Components/RichTextEditor';
+import Home from './Components/Dashboard';
+
 
 // Import your page components
 
@@ -18,16 +22,21 @@ const App = () => {
   });
 
   return transitions((style, item) => (
-    // <div>
-    // <Header/>
-    // <animated.div style={style}>
-    //   <Routes location={item}>
-    //     <Route path="/" element={Counter} />
-    //     <Route path="/dashboard" element={<Dashboard />} />
-    //   </Routes>
-    // </animated.div>
-    // </div>
-    <GoogleLogin/>
+    <div className='flex flex-col'>
+    <Header/>
+    <animated.div style={style}>
+      <Routes location={item}>
+        <Route path="/" element={<Form/>} />
+        <Route path="/counter" element={<Counter />} />
+        <Route path="/dashboard" element={<Home />} />
+        <Route path="/richtexteditor" element={<RichTextEditor />} />
+      </Routes>
+    </animated.div>
+    </div>
+    
+    
+    
+    
   ));
 };
 

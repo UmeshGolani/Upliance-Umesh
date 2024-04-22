@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { saveUserData } from '../../redux/userSlice';
 import UnsavedChangesPopup from './UnsavedChangesPopup';
+import Login from '../GoogleLogin';
 
 function Form() {
   const dispatch = useDispatch();
@@ -65,7 +66,7 @@ function Form() {
     <div className="min-h-screen bg-gray-100 py-8">
       <div className="max-w-md mx-auto bg-white p-8 rounded-md shadow">
         <h1 className="text-2xl mb-4">User Data Form</h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div className="mb-4">
             <label htmlFor="name" className="block mb-1">Name:</label>
             <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-md" />
@@ -82,7 +83,10 @@ function Form() {
             <label htmlFor="phone" className="block mb-1">Phone:</label>
             <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-md" />
           </div>
-          <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded-md">Submit</button>
+          <div className="flex justify-between items-center">
+            <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded-md">Submit</button>
+            <Login />
+          </div>
         </form>
       </div>
       {showUnsavedChangesPopup && <UnsavedChangesPopup onLeave={handleLeave} onStay={handleStay} />}
